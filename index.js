@@ -10,7 +10,12 @@ const bot = new TelegramBot(token, { polling: false });  // polling: false 表�
 
 // 创建一个 Express 应用来处理 Webhook 请求
 const app = express();
-app.use(bodyParser.json());  // 用来解析 JSON 请求
+app.use(bodyParser.json()); 
+ // 用来解析 JSON 请求
+// 处理 GET 请求并返回一些字符
+app.get('/hello', (req, res) => {
+  res.send('Hello, welcome to my Telegram Bot!');
+});
 
 // 处理 Telegram 发送的 Webhook 请求
 app.post('/webhook', (req, res) => {
